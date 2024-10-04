@@ -41,9 +41,7 @@ header h2{
 .wrap{
     flex-wrap: wrap;
 }
-.b{
-    /* border: 1px solid white; */
-}
+
 .aic{
     align-items: center;
 }
