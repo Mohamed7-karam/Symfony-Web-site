@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Controller;
+
+use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
+use App\Services\CategoriesServices;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class BlogController extends AbstractController
+{
+    public function __construct(CategoriesServices $categoriesServices){
+        $categoriesServices->updateSession();
+    }
+
+    #[Route('/', name: 'app_hello')]
+    public function hello(Request $request, ArticleRepository $repoArticle): Response
+    {
+        $articles = $repoArticle->findAll();
+
+        return $this->render('blog/index.html.twig', [
+            'controller_name' => 'BlogController',
+            'articles' => $articles,
+           // 'categories' => $categories,
+        ]);
+    }
+    #[Route('/article/{slug}', name: 'app_single_article')]
+    public function single(ArticleRepository $repoArticle, string $slug): Response
+    {
+        $article = $repoArticle->findOneBySlug($slug);
+        // dd($articles);
+
+        return $this->render('blog/single.html.twig', [
+            'controller_name' => 'BlogController',
+            'article' => $article,
+        ]);
+    }
+
+    #[Route('/category/{slug}', name: 'app_article_by_category')]
+    public function article_by_category(ArticleRepository $repoArticle, string $slug): Response
+    {
+        $category = $repoArticle->findOneBySlug($slug);
+
+        $articles = [];
+        if($category){
+            $articles = $category->getArticles()->getValues();
+        }
+
+        // dd($articles);
+
+        return $this->render('blog/articles_by_category.html.twig', [
+            'controller_name' => 'BlogController',
+            'category' => $category,
+            'articles' => $articles,
+        ]);
+    }
+
+   
+
+    
+}

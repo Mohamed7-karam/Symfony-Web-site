@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Blog Jstore {% endblock %}
+
+
+
+{% block body %}
+    <div class="articles-infos">
+        <p> Articles de la categorie : <strong>{{ category.name }}</strong> </p>
+        <strong>{{articles | length}}</strong> articles retrouvés
+    </div>
+    <div class="articles">
+        {% for article in articles %}
+            <a href="/article/{{article.slug}}" class="article-item">
+                <div class="article-image">
+                    <img src={{ article.imageUrl }}  alt="Image de l'aricle : {{ article.title }}">
+                </div>
+                <div class="article-details flex">
+                    <div class="article-author-details">
+                        <div class="article-author-picture">
+                            <img src={{ article.author.profile.picture }}  alt="image de profile de {{article.author.fullname}}">
+                        </div>
+                    </div>
+                    <div class="article-content-details">
+                        <h2 class="article-title"> {{ article.title }} </h2>
+                        <div class="article-createdAt"> {{ article.fromNow }} </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

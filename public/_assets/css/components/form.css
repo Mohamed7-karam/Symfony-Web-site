@@ -1,0 +1,16 @@
+.form-group{
+    margin: 5px 0;
+}
+form textarea{
+    border: 1px solid #ccc;
+}
+form input{
+    border: 1px solid #ccc;
+    height: 30px;
+}
+
+form{
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+}
