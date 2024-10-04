@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %} Jstore | Page Contact {% endblock %}
 
 {% block body %}
 
-{{ form_start(contact) }}
-    {{ form_row(contact.Subject) }}
-    {{ form_row(contact.Message) }}
-{{ form_end(contact) }}
+<h2 class="title">Contact Us</h2>
 
+{{ form_start(contact) }}
+    {% for message in app.session.flashBag.get("message") %}
+        <div class="alert {{ app.session.get("status") }}">{{ message }}</div>
+    {% endfor %}
+{{ form_end(contact) }}
 
 {% endblock %}

@@ -9,6 +9,10 @@
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+  />
     <link rel="stylesheet" href="/_assets/css/main.css">
     {% endblock %}
 

@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="single-article">
-        <div class="article-image"
+        <div class="article-image  animate__animated animate__bounce"
         style="background-image: url({{ article.imageUrl }})"
         >
            
@@ -21,12 +21,12 @@
                 <div class="article-createdAt"> {{ article.fromNow }} </div>
                 <div class="article-categories flex wrap">
                     {% for category in article.categories %}
-                        <a href="/category/{{category.slug}}" class="article-category-item badge"> {{ category.name }} ({{category.articles | length}} article(s) publié(s)) </a>
+                        <a href="/category/{{category.slug}}" class="article-category-item badge"> {{ category.name }} ({{category.articles | length}} articles publiés) </a>
                     {% endfor %}
                 </div>
             </div>
         </div>
-        <div class="content">
+        <div class="content animate__backInUp">
             {{ article.content }}
         </div>
        

@@ -1,19 +1,26 @@
-ul{
+header nav ul{
     list-style-type: none;
     gap: 20px;
     text-transform: uppercase;
 }
-ul li{
+header nav ul li{
     position: relative;
     height: 80px;
     display: flex;
     align-items: center;
 }
-ul li:hover ul{
+header nav > ul >li >a{
+    padding: 5px;
+}
+header nav > ul >li:hover> a{
+    background-color: white;
+    color: var(--main-color);
+}
+header nav ul li:hover ul{
     display: block;
 }
 
-ul li ul{
+header nav ul li ul{
     position: absolute;
     top: 80px;
     left: 0;
@@ -23,20 +30,25 @@ ul li ul{
     color: var(--main-color);
     display: none;
 }
-ul li ul li{
+header nav ul li ul li{
     height: 40px;
     display: flex;
     align-items: center;
     padding: 0 10px;
     white-space: nowrap;
 }
-ul li ul li a{
+header nav ul li ul li a{
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-ul li ul li:hover{
+header nav ul li ul li:hover{
     background-color: var(--main-color);
     color: white;
     cursor: pointer;
+}
+header nav > ul li ul{
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 2px 25px #1d1d1d;
 }

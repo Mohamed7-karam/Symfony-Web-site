@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Blog Jstore {% endblock %}
+{% block title %} Blog Jstore | Plusieurs articles publiés chaque jour ! {% endblock %}
 
 {% block slider %}
     <div class="slider">
@@ -21,7 +21,7 @@
     </div>
     <div class="articles">
         {% for article in articles %}
-            <a href="/article/{{article.slug}}" class="article-item">
+            <a href="/article/{{article.slug}}" class="article-item animate__fadeIn">
                 <div class="article-image">
                     <img src={{ article.imageUrl }}  alt="Image de l'aricle : {{ article.title }}">
                 </div>

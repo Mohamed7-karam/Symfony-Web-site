@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactRepository;
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ContactRepository;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -14,15 +16,28 @@ class Contact
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Your full name must be at least {{ limit }} characters long'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $full_name = null;
 
+    #[Assert\Email(message: 'The email {{ value }} is not a valid email.')]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[Assert\Length(
+        min: 10,
+        minMessage: 'Your subject must be at least {{ limit }} characters long'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $subject = null;
-
+    
+    #[Assert\Length(
+        min: 50,
+        minMessage: 'Your message must be at least {{ limit }} characters long'
+    )]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
@@ -30,7 +45,7 @@ class Contact
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
-    private ?bool $read = null;
+    private ?bool $read = false;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
@@ -45,7 +60,7 @@ class Contact
         return $this->full_name;
     }
 
-    public function setFullName(string $full_name): static
+    public function setFullName(string $full_name): self
     {
         $this->full_name = $full_name;
 
@@ -57,7 +72,7 @@ class Contact
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -69,7 +84,7 @@ class Contact
         return $this->subject;
     }
 
-    public function setSubject(string $subject): static
+    public function setSubject(string $subject): self
     {
         $this->subject = $subject;
 
@@ -81,7 +96,7 @@ class Contact
         return $this->message;
     }
 
-    public function setMessage(string $message): static
+    public function setMessage(string $message): self
     {
         $this->message = $message;
 
@@ -93,7 +108,7 @@ class Contact
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -105,7 +120,7 @@ class Contact
         return $this->read;
     }
 
-    public function setRead(bool $read): static
+    public function setRead(bool $read): self
     {
         $this->read = $read;
 
@@ -117,7 +132,7 @@ class Contact
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

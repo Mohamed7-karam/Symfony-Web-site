@@ -1,16 +1,48 @@
 .form-group{
-    margin: 5px 0;
+    margin: 15px 0;
+    flex-direction: column;
 }
+
 form textarea{
     border: 1px solid #ccc;
+    resize: none;
+    outline: none;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif
+
+}
+form select{
+    border: 1px solid #ccc;
+    outline: none;
+    min-height: 30px;
+
 }
 form input{
+    min-height: 30px;
     border: 1px solid #ccc;
-    height: 30px;
+    outline: none;
+    padding: 0 10px;
+    order: 1;
 }
 
 form{
     max-width: 600px;
     width: 90%;
-    margin: 0 auto;
+    margin: auto;
+    height: 100%;
+}
+form .label-container{
+    /* display: none; */
+    width: 150px;
+    overflow: hidden;
+}
+form ul {
+    margin: 2px 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8rem;
+    order: 2;
+}
+form ul li{
+    color: var(--main-danger) !important;
 }

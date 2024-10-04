@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240918095157 extends AbstractMigration
+final class Version20241004171157 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -34,6 +34,9 @@ final class Version20240918095157 extends AbstractMigration
         $this->addSql('CREATE TABLE category_article (category_id INTEGER NOT NULL, article_id INTEGER NOT NULL, PRIMARY KEY(category_id, article_id), CONSTRAINT FK_C5E24E1812469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE, CONSTRAINT FK_C5E24E187294869C FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE)');
         $this->addSql('CREATE INDEX IDX_C5E24E1812469DE2 ON category_article (category_id)');
         $this->addSql('CREATE INDEX IDX_C5E24E187294869C ON category_article (article_id)');
+        $this->addSql('CREATE TABLE contact (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, full_name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, subject VARCHAR(255) NOT NULL, message CLOB NOT NULL, created_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
+        , read BOOLEAN NOT NULL, updated_at DATETIME DEFAULT NULL --(DC2Type:datetime_immutable)
+        )');
         $this->addSql('CREATE TABLE profile (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, picture VARCHAR(255) DEFAULT NULL, description CLOB DEFAULT NULL, date_birth DATETIME DEFAULT NULL, cover_picture VARCHAR(255) DEFAULT NULL, updated_at DATETIME DEFAULT NULL --(DC2Type:datetime_immutable)
         , created_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
         , CONSTRAINT FK_8157AA0FA76ED395 FOREIGN KEY (user_id) REFERENCES user (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
@@ -54,6 +57,7 @@ final class Version20240918095157 extends AbstractMigration
         $this->addSql('DROP TABLE article');
         $this->addSql('DROP TABLE category');
         $this->addSql('DROP TABLE category_article');
+        $this->addSql('DROP TABLE contact');
         $this->addSql('DROP TABLE profile');
         $this->addSql('DROP TABLE user');
         $this->addSql('DROP TABLE messenger_messages');

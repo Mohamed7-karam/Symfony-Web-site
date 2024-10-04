@@ -9,7 +9,11 @@
     --main-gradient: linear-gradient(var(--main-color), var(--main-color-white), var(--main-color));
 } */
 :root{
+    --animate-duration: 800ms;
+  --animate-delay: 0.9s;
     --main-color: #000226;
+    --main-danger: rgb(255, 0, 60);
+    --main-success: rgb(0, 68, 45);
     --main-color-white: #17193f;
     --main-gradient: linear-gradient(var(--main-color), var(--main-color-white), var(--main-color));
 }
