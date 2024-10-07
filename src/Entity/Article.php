@@ -30,6 +30,9 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $imageUrl = null;
 
+    
+    private ?string $imageFile = null;
+
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
@@ -187,6 +190,30 @@ class Article
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageFile
+     *
+     * @return ?string
+     */
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @param ?string $imageFile
+     *
+     * @return self
+     */
+    public function setImageFile(?string $imageFile): self
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

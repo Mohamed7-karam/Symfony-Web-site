@@ -3,9 +3,26 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
 
-    {{ include('article/_form.html.twig') }}
+    {{ include('article/_form.html.twig', {title: "Create new Article"}) }}
 
     <a href="{{ path('app_article_index') }}">back to list</a>
+
+    {% endblock %}
+    
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function() {
+            $('.choices_categories').select2();
+        });
+        ClassicEditor
+                                .create( document.querySelector( '#article_content' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+    </script>
 {% endblock %}

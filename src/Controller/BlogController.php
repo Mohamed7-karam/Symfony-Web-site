@@ -30,7 +30,6 @@ class BlogController extends AbstractController
     public function single(ArticleRepository $repoArticle,string $slug): Response
     {
         $article = $repoArticle->findOneBySlug($slug);
-        // dd($articles);
 
         return $this->render('blog/single.html.twig', [
             'controller_name' => 'BlogController',

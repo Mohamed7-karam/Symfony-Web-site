@@ -1,7 +1,24 @@
+header{
+    background: var(--main-gradient);
+    color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 25px #1d1d1d;
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+    padding: 0 30px;
+    cursor: pointer;
+}
+header h2{
+    text-shadow: 1px 1px 25px #1d1d1d;
+}
 header nav ul{
     list-style-type: none;
     gap: 20px;
     text-transform: uppercase;
+    flex-wrap: wrap;
 }
 header nav ul li{
     position: relative;
@@ -51,4 +68,39 @@ header nav > ul li ul{
     border: 1px solid #ccc;
     border-top: none;
     box-shadow: 0 2px 25px #1d1d1d;
+}
+.nav-icon{
+    display: none;
+    font-size: 2rem;
+}
+@media screen and (max-width: 900px) {
+    header{
+        display: flex;
+        justify-content: space-between;
+    }
+    header nav{
+        background-color: white;
+        color: var(--main-color);
+        font-weight: bold;
+        position: fixed;
+        top: 0px;
+        left: 0;
+        width: 80%;
+        height: 100vh;
+        box-shadow: 0 2px 25px #1d1d1d;
+        display: none;
+    }
+    header nav ul{
+        flex-direction: column;
+        padding: 0;
+    }
+    header nav ul li ul{
+        left: -93px;
+        width: 80%;
+        background-color: white;
+        color: var(--main-color);
+    }
+    .nav-icon{
+        display: block ;
+    }
 }

@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+@import url("/_assets/css/libraries/select.css");
 @import url("/_assets/css/components/colors.css");
 @import url("/_assets/css/components/index.css");
 @import url("/_assets/css/components/slider.css");
@@ -6,4 +8,6 @@
 @import url("/_assets/css/components/form.css");
 @import url("/_assets/css/components/animate.css");
 @import url("/_assets/css/components/alert.css");
+@import url("/_assets/css/components/editor.css");
+@import url("/_assets/css/components/table.css");
 @import url("/_assets/css/components/home.css");

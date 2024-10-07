@@ -3,27 +3,13 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: #efefef;
 }
-header{
-    background: var(--main-gradient);
-    color: white;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 25px #1d1d1d;
-    position: sticky;
-    top: 0;
-    z-index: 99999;
-}
+
 h1,h2,h3,h4,h5,h6{
     margin: 0;
 }
 .title{
     text-align: center;
     text-transform: uppercase;
-}
-header h2{
-    padding-left: 30px;
-    text-shadow: 1px 1px 25px #1d1d1d;
 }
 .container{
     width: 90%;
@@ -34,6 +20,7 @@ header h2{
 }
 .flex{
     display: flex;
+    gap: 5px;
 }
 .flex-1{
     flex:1;
@@ -41,7 +28,9 @@ header h2{
 .wrap{
     flex-wrap: wrap;
 }
-
+.b{
+    /* border: 1px solid white; */
+}
 .aic{
     align-items: center;
 }
@@ -64,10 +53,18 @@ a{
     color: white;
     cursor: pointer;
     border: none;
-    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
     box-shadow: 0 2px 25px #1d1d1d;
     background: var(--main-gradient);
 
+}
+form .btn{width: 100%;}
+.mb-10{
+    margin-bottom: 10px;
+}
+none{
+    display: none !important;
 }
 footer{
     background: var(--main-gradient);

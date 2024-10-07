@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -16,15 +17,13 @@
     <link rel="stylesheet" href="/_assets/css/main.css">
     {% endblock %}
 
-    {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+    
 </head>
 
 <body>
     <header>
         <a href="/">
-            <h2>Blog</h2>
+            <h2>Jstore</h2>
         </a>
         <nav>
             <ul class="nav-bar flex aic">
@@ -39,8 +38,18 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a href="/contact">Contact</a></li>
+                {% if app.user %}
+                    <li class="nav-item"><a href="/account">Account</a></li>
+                    <li class="nav-item"><a href="/logout">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a href="/login">Login</a></li>
+                    <li class="nav-item"><a href="/register">Register</a></li>
+                {% endif %}
             </ul>
         </nav>
+        <div class="nav-icon">
+            <i class="bi bi-card-heading"></i>
+        </div>
     </header>
     {% block slider %}{% endblock %}
     <div class="container">
@@ -51,7 +60,7 @@
         <div class="container">
             <div class="footer-content flex wrap">
                 <div class="footer-content-item flex-1 b">
-                    <h2>Blog</h2>
+                    <h2>Jstore | Blog</h2>
                     <p>Site d'informations et d'actualités sur tous les sujets relatifs à l'informatique,
                         l'economie, la situation dans le monde, etc...
                     </p>
@@ -102,6 +111,14 @@
             </div>
         </div>
     </footer>
+
+    <script src="/_assets/js/jquery-3.6.1.js"></script>
+    <script src="/_assets/js/select2.js"></script>
+    <script src="/_assets/js/editor.js"></script>
+    <script src="/_assets/js/main.js"></script>
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 </body>
 
 </html>

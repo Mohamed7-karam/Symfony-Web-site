@@ -3,16 +3,25 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
+{{ form_start(registrationForm) }}
+<h2 class="title">Register</h2>
+        {{ form_row(registrationForm.full_name) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="flex mb-10">
+            <div class="flex aic">
+                {{ form_label(registrationForm.agreeTerms) }}
+
+            </div>
+            <div>
+                {{ form_widget(registrationForm.agreeTerms) }}
+
+            </div>
+
+        </div>
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}

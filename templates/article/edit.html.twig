@@ -3,11 +3,26 @@
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('article/_form.html.twig', {'button_label': 'Update', title: "Edit Article"}) }}
 
     <a href="{{ path('app_article_index') }}">back to list</a>
 
-    {{ include('article/_delete_form.html.twig') }}
+   {# {{ include('article/_delete_form.html.twig') }} #}
+{% endblock %}
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function() {
+            $('.choices_categories').select2();
+        });
+        ClassicEditor
+                                .create( document.querySelector( '#article_content' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+    </script>
 {% endblock %}

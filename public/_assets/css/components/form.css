@@ -1,6 +1,7 @@
 .form-group{
     margin: 15px 0;
     flex-direction: column;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 form textarea{
@@ -14,11 +15,19 @@ form textarea{
 form select{
     border: 1px solid #ccc;
     outline: none;
-    min-height: 30px;
+    min-height: 40px;
 
 }
+form input[type="file"] {
+    overflow: hidden;
+    align-items: baseline;
+    color: inherit;
+    text-overflow: ellipsis;
+    white-space: pre;
+    text-align: start !important;
+}
 form input{
-    min-height: 30px;
+    min-height: 40px;
     border: 1px solid #ccc;
     outline: none;
     padding: 0 10px;
@@ -28,7 +37,7 @@ form input{
 form{
     max-width: 600px;
     width: 90%;
-    margin: auto;
+    margin: 150px auto;
     height: 100%;
 }
 form .label-container{
