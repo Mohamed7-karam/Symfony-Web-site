@@ -17,10 +17,21 @@ h1,h2,h3,h4,h5,h6{
     margin: 50px auto;
     position: relative;
     z-index: 999;
+    overflow: hidden;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+.mt-20{
+    margin-top: 20px;
 }
 .flex{
     display: flex;
     gap: 5px;
+}
+.gap-20{
+    gap: 20px;
 }
 .flex-1{
     flex:1;
@@ -100,4 +111,10 @@ footer ul{
 footer ul li{
     line-height: 1.2;
     padding-bottom: 15px;
+}
+@media screen and (max-width: 900px) {
+    .container{
+        flex-direction: column;
+    }
+    
 }

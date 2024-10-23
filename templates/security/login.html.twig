@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Jstore | Log in!{% endblock %}
+{% set aside = "not" %}
+
+{% block header %}
+    {{ include('header/header.html.twig', {name : "Login Form"})}}
+{% endblock %}
 
 {% block body %}
 <form method="post">
-    <h2 class="h3 mb-3 font-weight-normal title">Please sign in</h2>
+    <p>Don't have account ? Please <a href="{{ path("app_register")}}">click here</a> to sign up. </p>
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}

@@ -1,6 +1,6 @@
 header{
-    background: var(--main-gradient);
-    color: white;
+    background: white;
+    color: var(--main-color);
     height: 80px;
     display: flex;
     align-items: center;
@@ -13,12 +13,17 @@ header{
 }
 header h2{
     text-shadow: 1px 1px 25px #1d1d1d;
+    text-transform: uppercase;
+}
+header nav{
+    flex: 1;
 }
 header nav ul{
     list-style-type: none;
     gap: 20px;
     text-transform: uppercase;
     flex-wrap: wrap;
+    justify-content: center;
 }
 header nav ul li{
     position: relative;
@@ -28,6 +33,7 @@ header nav ul li{
 }
 header nav > ul >li >a{
     padding: 5px;
+    font-weight: bold;
 }
 header nav > ul >li:hover> a{
     background-color: white;
@@ -73,7 +79,17 @@ header nav > ul li ul{
     display: none;
     font-size: 2rem;
 }
+.header-page{
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--main-gradient);
+    color: white;
+    text-transform: uppercase;
+}
 @media screen and (max-width: 900px) {
+    .container{}
     header{
         display: flex;
         justify-content: space-between;

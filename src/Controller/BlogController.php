@@ -16,7 +16,7 @@ class BlogController extends AbstractController
         $categoriesServices->updateSession();
     }
 
-    #[Route('/', name: 'app_hello')]
+    #[Route('/', name: 'app_index')]
     public function hello(Request $request ,ArticleRepository $repoArticle): Response
     {
         $articles = $repoArticle->findAll();
@@ -30,10 +30,12 @@ class BlogController extends AbstractController
     public function single(ArticleRepository $repoArticle,string $slug): Response
     {
         $article = $repoArticle->findOneBySlug($slug);
+        $articles = $repoArticle->findAll();
 
         return $this->render('blog/single.html.twig', [
             'controller_name' => 'BlogController',
-            'article' => $article
+            'article' => $article,
+            'articles' => $articles
         ]);
     }
 

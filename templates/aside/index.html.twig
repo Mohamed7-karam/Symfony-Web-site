@@ -1,0 +1,20 @@
+<aside class="categories">
+    <h2>Category</h2>
+    <ul>
+        {% for category in app.session.get("categories") %}
+        <li class=""><a href="/category/{{category.slug}}">{{ category.name}} ({{category.articles| length}} articles)</a></li>
+        {% endfor %}
+    </ul>
+    <h2>Plateforme Mudey</h2>
+    <p>La plateforme mudey Formation est une plateforme de formation professionnelle en ligne 
+        ouverte 24h/24 et 7Jours/7. 
+        Plusieurs formations certifiantes disponibles.
+    </p>
+    <ul>
+        <li><a href="https://free.mudey.fr" target="_blank">Formule Free</a></li>
+        <li><a href="https://starter.mudey.fr" target="_blank">Formule Starter</a></li>
+        <li><a href="https://basic.mudey.fr" target="_blank">Formule Basic</a></li>
+        <li><a href="https://premium.mudey.fr" target="_blank">Formule Premium</a></li>
+        <li><a href="https://business.mudey.fr" target="_blank">Formule Business</a></li>
+    </ul>
+</aside>

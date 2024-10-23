@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} Jstore | Page Contact {% endblock %}
+{% set aside = "not" %}
 
+{% block header %}
+    {{ include('header/header.html.twig', {name : "Contact Us"})}}
+{% endblock %}
 {% block body %}
 
 
 {{ form_start(contact) }}
-<h2 class="title">Contact Us</h2>
     {% for message in app.session.flashBag.get("message") %}
         <div class="alert {{ app.session.get("status") }}">{{ message }}</div>
     {% endfor %}

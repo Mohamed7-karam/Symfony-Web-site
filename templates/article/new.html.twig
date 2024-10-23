@@ -1,12 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}New Article{% endblock %}
+{% set aside = "not" %}
+
+{% block header %}
+    {{ include('header/header.html.twig', {name :  "Create Article" })}}
+{% endblock %}
 
 {% block body %}
 
-    {{ include('article/_form.html.twig', {title: "Create new Article"}) }}
+<div class="UserDashboard flex gap-20">
+    {{ include('account_dashboard/index.html.twig', {page: "articles"}) }}
+    <div class="UserDashboard-container">
+        {{ include('article/_form.html.twig', {title: "Create new Article", required: "required"}) }}
+        
+    </div>
+</div>
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+
+ 
 
     {% endblock %}
     
@@ -15,6 +27,19 @@
     <script>
         $(document).ready(function() {
             $('.choices_categories').select2();
+            $("input[type='file']").change(function(){
+                var file = $(this).get(0).files[0]
+                if(file){
+                    var reader = new FileReader();
+                    reader.onload = function(){
+                        console.log(file);
+                        var img = `<img src='${reader.result}' alt="Preview Image" />`;
+                        $(".image-preview").html(img)
+                    }
+                    reader.readAsDataURL(file)
+                }
+            })
+            $("textarea").removeAttr("required")
         });
         ClassicEditor
                                 .create( document.querySelector( '#article_content' ) )

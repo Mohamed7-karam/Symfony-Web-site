@@ -2,38 +2,83 @@
 
 {% block title %} {{ article.title }} {% endblock %}
 
-{% block body %}
+{% block header %}
+    {{ include('header/header.html.twig', {name : article.title})}}
+{% endblock %}
 
-    <div class="single-article">
-        <div class="article-image  animate__animated animate__bounce"
-        style="background-image: url({{ article.imageUrl }})"
-        >
-           
-        </div>
-        <div class="article-details flex">
-            <div class="article-author-details">
-                <div class="article-author-picture">
-                    {%if article.author.profile.picture is defined %}
-                                <img src={{ article.author.profile.picture }}  alt="image de profile de {{article.author.fullname}}">
-                            {%else%}
-                                <img src="/_assets/images/avatar_jstore.webp"  alt="image de profile de {{article.author.fullname}}">
-                            {%endif%}
-                </div>
-            </div>
-            <div class="article-content-details">
-                <h2 class="article-title"> {{ article.title }} </h2>
-                <div class="article-createdAt"> {{ article.fromNow }} </div>
-                <div class="article-categories flex wrap">
-                    {% for category in article.categories %}
-                        <a href="/category/{{category.slug}}" class="article-category-item badge"> {{ category.name }} ({{category.articles | length}} articles publiés) </a>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="content animate__backInUp">
-            {{ article.content | raw }}
-        </div>
-       
+{% block body %}
+<div class="single-article">
+    <div class="article-image  animate__animated animate__bounce" style="background-image: url({{ article.imageUrl }})">
+
     </div>
+    <div class="article-details flex">
+        <div class="article-author-details">
+            <div class="article-author-picture">
+                {%if article.author.profile.picture is defined %}
+                <img src={{ article.author.profile.picture }} alt="image de profile de {{article.author.fullname}}">
+                {%else%}
+                <img src="/_assets/images/avatar_jstore.webp" alt="image de profile de {{article.author.fullname}}">
+                {%endif%}
+            </div>
+        </div>
+        <div class="article-content-details">
+            <h2 class="article-title"> {{ article.title }} </h2>
+            <div class="article-createdAt"> {{ article.fromNow }} </div>
+            <div class="article-categories flex wrap">
+                {% for category in article.categories %}
+                <a href="/category/{{category.slug}}" class="article-category-item badge"> {{ category.name }}
+                    ({{category.articles | length}} articles publiés) </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="content animate__backInUp">
+        {{ article.content | raw }}
+    </div>
+    {% if app.user is same as(article.author) %}
+    <div class="action animate__backInUp">
+        <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="btn">Edit </a>
+    </div>
+    {% endif %}
+
+</div>
+<div class="most-popular mt-20 mb-10">
+    <h2>Nos articles populaires
+
+    </h2>
+    <div class="articles mt-20" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+        {% for article in articles %}
+        <a href="/article/{{article.slug}}" class="article-item animate__fadeIn">
+            <div class="article-image">
+                <img src={{ article.imageUrl }} alt="Image de l'aricle : {{ article.title }}">
+            </div>
+            <div class="article-details flex">
+                <div class="article-author-details">
+                    <div class="article-author-picture">
+                        {%if article.author.profile.picture is defined %}
+                        <img src={{ article.author.profile.picture }}
+                            alt="image de profile de {{article.author.fullname}}">
+                        {%else%}
+                        <img src="/_assets/images/avatar_jstore.webp"
+                            alt="image de profile de {{article.author.fullname}}">
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="article-content-details">
+                    <h2 class="article-title"> {{ article.title }} </h2>
+                    <div class="article-createdAt"> {{ article.fromNow }} </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
 
 {% endblock %}

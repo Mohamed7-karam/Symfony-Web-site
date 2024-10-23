@@ -1,0 +1,8 @@
+<aside class="dashboard">
+    <ul>
+        <li><a href="{{ path("app_dashboard")}}" class="{{page == "index" ? "active": ""}}">Dashboard</a></li>
+        <li><a href="{{ path("app_index")}}" class="">Home</a></li>
+        <li><a href="{{ path("app_article_index")}}" class="{{page == "articles" ? "active": ""}}">My Articles</a></li>
+        <li><a href="{{ path("app_logout")}}">Logout</a></li>
+    </ul>
+</aside>

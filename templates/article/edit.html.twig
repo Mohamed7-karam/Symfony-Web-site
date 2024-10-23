@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Edit Article{% endblock %}
+{% set aside = "not" %}
+
+{% block header %}
+    {{ include('header/header.html.twig', {name :  "Edit Article" })}}
+{% endblock %}
 
 {% block body %}
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update', title: "Edit Article"}) }}
-
-    <a href="{{ path('app_article_index') }}">back to list</a>
-
-   {# {{ include('article/_delete_form.html.twig') }} #}
+<div class="UserDashboard flex gap-20">
+    {{ include('account_dashboard/index.html.twig', {page: "articles"}) }}
+    <div class="UserDashboard-container">
+        {{ include('article/_form.html.twig', {'button_label': 'Update', title: "Edit Article"}) }}
+       
+    </div>
+</div>
 {% endblock %}
 {% block javascripts %}
 
     <script>
         $(document).ready(function() {
             $('.choices_categories').select2();
+            $("input[type='file']").change(function(){
+                var file = $(this).get(0).files[0]
+                if(file){
+                    var reader = new FileReader();
+                    reader.onload = function(){
+                        console.log(file);
+                        var img = `<img src='${reader.result}' alt="Preview Image" />`;
+                        $(".image-preview").html(img)
+                    }
+                    reader.readAsDataURL(file)
+                }
+            })
         });
         ClassicEditor
                                 .create( document.querySelector( '#article_content' ) )

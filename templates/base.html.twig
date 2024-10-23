@@ -52,8 +52,15 @@
         </div>
     </header>
     {% block slider %}{% endblock %}
-    <div class="container">
-        {% block body %}{% endblock %}
+    {% block header %}{% endblock %}
+    <div class="container flex gap-20">
+        <div class="flex-1">
+            {% block body %}{% endblock %}
+
+        </div>
+        {% if aside is not defined %}
+            {% include 'aside/index.html.twig' %}
+        {% endif %}
 
     </div>
     <footer>
@@ -113,6 +120,7 @@
     </footer>
 
     <script src="/_assets/js/jquery-3.6.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.0.2/readmore.min.js" integrity="sha512-llWtDR3k09pa9nOBfutQnrS2kIEG7M6Zm7RIjVVLNab1wRs8NUmA0OjAE38jKzKeCg+A3rdq8AVW41ZTsfhu5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/_assets/js/select2.js"></script>
     <script src="/_assets/js/editor.js"></script>
     <script src="/_assets/js/main.js"></script>

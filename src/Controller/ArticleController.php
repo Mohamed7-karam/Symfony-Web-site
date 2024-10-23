@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
-use App\Services\UploadFile;
+use App\Services\ManageFile;
 use App\Services\CategoriesServices;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,15 +16,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/account')]
 class ArticleController extends AbstractController
 {
-    private $uploadFile;
+    private $manageFile;
     private $em;
-    public function __construct(CategoriesServices $categoriesServices, UploadFile $uploadFile, EntityManagerInterface $em){
+    public function __construct(CategoriesServices $categoriesServices, ManageFile $manageFile, EntityManagerInterface $em){
         $categoriesServices->updateSession();
-        $this->uploadFile = $uploadFile;
+        $this->manageFile = $manageFile;
         $this->em = $em;
     }
-    #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    #[Route('/', name: 'app_dashboard', methods: ['GET'])]
+    public function index(): Response
+    {
+       
+
+        return $this->render('article/index.html.twig', [
+            // 'articles' => $articles,
+        ]);
+    }
+    #[Route('/articles', name: 'app_article_index', methods: ['GET'])]
+    public function articles(ArticleRepository $articleRepository): Response
     {
         $user = $this->getUser();
 
@@ -33,7 +42,7 @@ class ArticleController extends AbstractController
         }
         $articles = $articleRepository->findByAuthor($user);
 
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/articles.html.twig', [
             'articles' => $articles,
         ]);
     }
@@ -50,7 +59,7 @@ class ArticleController extends AbstractController
 
             $file = $form["imageFile"]->getData();
 
-            $file_url = $this->uploadFile->saveFile($file);
+            $file_url = $this->manageFile->saveFile($file);
 
             $article->setImageUrl($file_url);
             $article->setAuthor($this->getUser());
@@ -71,10 +80,13 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
-    public function show(Article $article): Response
+    public function show(Article $article, ArticleRepository $repoArticle): Response
     {
-        return $this->render('article/show.html.twig', [
+        $articles = $repoArticle->findAll();
+
+        return $this->render('blog/single.html.twig', [
             'article' => $article,
+            'articles' => $articles,
         ]);
     }
 
@@ -89,7 +101,7 @@ class ArticleController extends AbstractController
 
             $file = $form["imageFile"]->getData();
             if($file){
-                $file_url = $this->uploadFile->updateFile($file, $article->getImageUrl());
+                $file_url = $this->manageFile->updateFile($file, $article->getImageUrl());
                 
                 $article->setImageUrl($file_url);
                 
@@ -98,9 +110,7 @@ class ArticleController extends AbstractController
             $this->em->persist($article);
             $this->em->flush();
 
-            // $articleRepository->save($article, true);
-
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_single_article', ["slug"=>$article->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('article/edit.html.twig', [
@@ -113,7 +123,10 @@ class ArticleController extends AbstractController
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+            $imageUrl = $article->getImageUrl();
             $articleRepository->remove($article, true);
+            $this->manageFile->removeFile($imageUrl);
+
         }
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);

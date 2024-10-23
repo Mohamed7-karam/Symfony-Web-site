@@ -4,11 +4,12 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+.articles .article-item h2{}
 .articles .article-item{
     border: 1px solid #ccc;
     box-shadow: 2px 2px 13px #ccc;
     width: 100%;
-    max-width: 300px;
+    max-width: 285px;
     cursor: pointer;
 }
 .articles .article-item:hover{
@@ -37,5 +38,5 @@
 
 
 .articles .article-item .article-title{
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }

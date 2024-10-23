@@ -3,6 +3,9 @@
 {% block title %} Articles de la categorie : {{ category.name }} {% endblock %}
 
 
+{% block header %}
+    {{ include('header/header.html.twig', {name :  category.name })}}
+{% endblock %}
 
 {% block body %}
     <div class="articles-infos">

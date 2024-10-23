@@ -12,8 +12,19 @@ form textarea{
     font-family: Arial, Helvetica, sans-serif
 
 }
+form[name="article"]{
+    max-width: 100%;
+    margin: auto;
+}
+form .select2-selection{
+    border: 1px solid #ccc !important;
+    border-radius: 0 !important;
+
+}
+form .select2-selection,
 form select{
     border: 1px solid #ccc;
+    border-radius: 0 !important;
     outline: none;
     min-height: 40px;
 
@@ -32,13 +43,20 @@ form input{
     outline: none;
     padding: 0 10px;
     order: 1;
+    font-size: 1.3rem;
 }
 
 form{
     max-width: 600px;
     width: 90%;
-    margin: 150px auto;
+    margin: 50px auto;
     height: 100%;
+}
+form p{
+    text-align: center;
+}
+form p a{
+    color: var(--main-color);
 }
 form .label-container{
     /* display: none; */
@@ -52,6 +70,10 @@ form ul {
     font-size: 0.8rem;
     order: 2;
 }
-form ul li{
+form .form-group> ul li{
     color: var(--main-danger) !important;
+}
+form .image-preview img{
+    width: 100px;
+    height: 100px;
 }

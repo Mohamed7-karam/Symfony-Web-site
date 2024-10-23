@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error | Jstore {% endblock %}
+{% set aside = "not" %}
+
+{% block header %}
+    {{ include('header/header.html.twig', {name : "Error"})}}
+{% endblock %}
+
+{% block body %}
+<div class="error-page">
+    <h2>
+        Error
+    </h2>
+    <p>Page introuvable !</p>
+
+</div>
+
+{% endblock %}
